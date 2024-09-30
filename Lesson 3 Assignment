@@ -1,1 +1,64 @@
+# Function to get a valid investment amount from the user
+def get_investment():
+    while True:
+        try:
+            investment = int(input("Enter an investment amount (greater than 0 and less than 50,000): "))
+            if 0 < investment < 50000:
+                return investment
+            else:
+                print("Invalid input. Please enter an amount between 1 and 49,999.")
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
 
+# Function to get a valid interest rate from the user
+def get_interest_rate():
+    while True:
+        try:
+            rate = int(input("Enter an annual interest rate (greater than 0 and less than 15): "))
+            if 0 < rate < 15:
+                return rate
+            else:
+                print("Invalid input. Please enter a rate between 1 and 14.")
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
+
+# Function to get a valid duration in years from the user
+def get_duration():
+    while True:
+        try:
+            duration = int(input("Enter the investment duration in years (greater than 0): "))
+            if duration > 0:
+                return duration
+            else:
+                print("Invalid input. Please enter a value greater than 0.")
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
+
+# Main logic
+investment = get_investment()
+interest_rate = get_interest_rate()
+duration = get_duration()
+
+# Convert years to months and calculate the monthly interest rate
+months = duration * 12
+monthly_interest_rate = (interest_rate / 12) / 100
+
+# Initialize the total amount
+total = investment
+
+# Loop to calculate the investment compounded monthly
+for month in range(1, months + 1):
+    total += investment  # Add the monthly investment
+    interest = round(total * monthly_interest_rate, 2)  # Calculate interest
+    total += interest  # Add interest to the total
+    if month % 12 == 0:  # Check if it's the end of a year
+        year = month // 12
+        print(f"End of Year {year}: Total Investment Value: ${round(total, 2)}")
+
+# Final output
+print(f"\nTotal duration: {duration} years")
+print(f"Annual interest rate: {interest_rate}%")
+print(f"Monthly investment amount: ${investment}")
+print(f"Total amount after {duration} years: ${round(total, 2)}")
+
+print("Completed by Joseph Blevins with assistance from Shirley Blevins")
