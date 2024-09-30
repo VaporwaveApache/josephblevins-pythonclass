@@ -1,1 +1,11 @@
-
+first_name = str(input("Enter your first name:"))
+last_name = str(input("Enter your last name:"))
+year_current = int(input("Enter current year:"))
+year_birth = int(input("Enter the year you were born:"))
+age = year_current-year_birth
+next_age = age+1
+name = (f"{first_name} {last_name}")
+print("-+-+-+-+-")
+print(f"Hello, {name}. You are currently {age}. Next year you will be {next_age}.")
+print("-+-+-+-+-")
+print("Completed by, Joseph L Blevins.")
